@@ -19,12 +19,23 @@ class Login extends React.Component<LoginProps, LoginState> {
   state: LoginState = {
     userName: '',
     password: '',
+    // eslint-disable-next-line react/no-unused-state
     loginTried: false,
+    // eslint-disable-next-line react/no-unused-state
     loginSuccess: false,
   };
 
   render(): JSX.Element {
-    return <div>Login</div>;
+    const { userName, password } = this.state;
+    return (
+      <div>
+        <form>
+          <input type="text" value={userName} />
+          <input type="password" value={password} />
+          <input type="submit" value="login" />
+        </form>
+      </div>
+    );
   }
 }
 

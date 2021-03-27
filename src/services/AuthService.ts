@@ -1,17 +1,12 @@
 import { User } from '../model/Model';
 
 class AuthService {
-  userName: string;
-
-  constructor(userName: string) {
-    this.userName = userName;
-  }
-
+  // eslint-disable-next-line class-methods-use-this
   public async login(
     userName: string,
     password: string,
   ): Promise<User | undefined> {
-    if (this.userName === 'alex' && password === '7777') {
+    if (userName === 'alex' && password === '7777') {
       return {
         userName,
         email: 'alex@alex.com',

@@ -14,7 +14,7 @@ class App extends Component<unknown, AppState> {
   render(): JSX.Element {
     return (
       <div>
-        <Login />
+        <Login authService={this.authService} />
         Hello
       </div>
     );

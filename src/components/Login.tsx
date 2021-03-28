@@ -19,15 +19,15 @@ interface CustomElement {
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Login extends React.Component<LoginProps, LoginState> {
-  // eslint-disable-next-line react/state-in-constructor
-  state: LoginState = {
-    userName: '',
-    password: '',
-    // eslint-disable-next-line react/no-unused-state
-    loginTried: false,
-    // eslint-disable-next-line react/no-unused-state
-    loginSuccess: false,
-  };
+  constructor(props: LoginProps) {
+    super(props);
+    this.state = {
+      userName: '',
+      password: '',
+      loginTried: false,
+      loginSuccess: false,
+    };
+  }
 
   private async handleSubmit(event: SyntheticEvent) {
     event.preventDefault();

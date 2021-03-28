@@ -13,6 +13,10 @@ interface LoginState {
   loginSuccess: boolean;
 }
 
+interface CustomElement {
+  target: HTMLInputElement;
+}
+
 // eslint-disable-next-line react/prefer-stateless-function
 class Login extends React.Component<LoginProps, LoginState> {
   // eslint-disable-next-line react/state-in-constructor
@@ -24,6 +28,10 @@ class Login extends React.Component<LoginProps, LoginState> {
     // eslint-disable-next-line react/no-unused-state
     loginSuccess: false,
   };
+
+  private setUserName(event: CustomElement) {
+		this.setState({userName: event.target.value})
+	}
 
   render(): JSX.Element {
     const { userName, password } = this.state;

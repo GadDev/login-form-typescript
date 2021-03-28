@@ -30,8 +30,12 @@ class Login extends React.Component<LoginProps, LoginState> {
   };
 
   private setUserName(event: CustomElement) {
-		this.setState({userName: event.target.value})
-	}
+    this.setState({ userName: event.target.value });
+  }
+
+  private setPassword(event: CustomElement) {
+    this.setState({ password: event.target.value });
+  }
 
   render(): JSX.Element {
     const { userName, password } = this.state;

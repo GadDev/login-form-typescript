@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 
 import AuthService from '../services/AuthService';
 
@@ -29,6 +29,18 @@ class Login extends React.Component<LoginProps, LoginState> {
     loginSuccess: false,
   };
 
+  private async handleSubmit(event: SyntheticEvent) {
+    event.preventDefault();
+    const { authService } = this.props;
+    const { userName, password } = this.state;
+    const result = await authService.login(userName, password);
+    if (result) {
+      console.log(result);
+    } else {
+      console.log();
+    }
+  }
+
   private setUserName(event: CustomElement) {
     this.setState({ userName: event.target.value });
   }
@@ -42,8 +54,16 @@ class Login extends React.Component<LoginProps, LoginState> {
     return (
       <div>
         <form>
-          <input type="text" value={userName} />
-          <input type="password" value={password} />
+          <input
+            type="text"
+            value={userName}
+            onChange={(e) => this.setUserName(e)}
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => this.setPassword(e)}
+          />
           <input type="submit" value="login" />
         </form>
       </div>

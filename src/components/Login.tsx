@@ -31,13 +31,18 @@ class Login extends React.Component<LoginProps, LoginState> {
 
   private async handleSubmit(event: SyntheticEvent) {
     event.preventDefault();
+    this.setState({ loginTried: true });
     const { authService } = this.props;
     const { userName, password } = this.state;
     const result = await authService.login(userName, password);
     if (result) {
+      // eslint-disable-next-line no-console
       console.log(result);
+      this.setState({ loginSuccess: true });
     } else {
-      console.log();
+      // eslint-disable-next-line no-console
+      console.log('wrong login');
+      this.setState({ loginSuccess: false });
     }
   }
 
@@ -50,10 +55,18 @@ class Login extends React.Component<LoginProps, LoginState> {
   }
 
   render(): JSX.Element {
-    const { userName, password } = this.state;
+    const { userName, password, loginTried, loginSuccess } = this.state;
+    let loginMsg: JSX.Element | null = null;
+    if (loginTried) {
+      if (loginSuccess) {
+        loginMsg = <span>Login successful</span>;
+      } else {
+        loginMsg = <span>Login failed</span>;
+      }
+    }
     return (
       <div>
-        <form>
+        <form onSubmit={(e) => this.handleSubmit(e)}>
           <input
             type="text"
             value={userName}
@@ -66,6 +79,7 @@ class Login extends React.Component<LoginProps, LoginState> {
           />
           <input type="submit" value="login" />
         </form>
+        {loginMsg}
       </div>
     );
   }

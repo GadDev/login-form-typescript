@@ -11,11 +11,27 @@ interface AppState {
 class App extends Component<unknown, AppState> {
   private authService: AuthService = new AuthService();
 
+  constructor(props: unknown) {
+    super(props);
+    this.state = {
+      user: {
+        userName: '',
+        email: '',
+      },
+    };
+    this.setUser = this.setUser.bind(this);
+  }
+
+  private setUser(user: User) {
+    this.setState({ user });
+  }
+
   render(): JSX.Element {
+    const { user } = this.state;
     return (
       <div>
-        <Login authService={this.authService} />
-        Hello
+        <Login authService={this.authService} setUser={this.setUser} />
+        {user?.userName ? `Hello ${user?.userName}` : null}
       </div>
     );
   }

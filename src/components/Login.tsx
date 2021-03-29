@@ -34,11 +34,12 @@ class Login extends React.Component<LoginProps, LoginState> {
   private async handleSubmit(event: SyntheticEvent) {
     event.preventDefault();
     this.setState({ loginTried: true });
-    const { authService } = this.props;
+    const { authService, setUser } = this.props;
     const { userName, password } = this.state;
     const result = await authService.login(userName, password);
     if (result) {
       this.setState({ loginSuccess: true });
+      setUser(result);
     } else {
       this.setState({ loginSuccess: false });
     }

@@ -6,6 +6,7 @@ import AuthService from '../services/AuthService';
 interface LoginProps {
   authService: AuthService;
   setUser: (user: User) => void;
+  history: any;
 }
 
 interface LoginState {
@@ -34,12 +35,13 @@ class Login extends React.Component<LoginProps, LoginState> {
   private async handleSubmit(event: SyntheticEvent) {
     event.preventDefault();
     this.setState({ loginTried: true });
-    const { authService, setUser } = this.props;
+    const { authService, setUser, history } = this.props;
     const { userName, password } = this.state;
     const result = await authService.login(userName, password);
     if (result) {
       this.setState({ loginSuccess: true });
       setUser(result);
+      history.push('/profile');
     } else {
       this.setState({ loginSuccess: false });
     }
@@ -63,6 +65,7 @@ class Login extends React.Component<LoginProps, LoginState> {
         loginMsg = <span>Login failed</span>;
       }
     }
+    console.log(this.props);
     return (
       <div>
         <form onSubmit={(e) => this.handleSubmit(e)}>

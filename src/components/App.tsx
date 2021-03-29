@@ -33,13 +33,22 @@ class App extends Component<unknown, AppState> {
     return (
       <div>
         <Router>
+          <Navbar user={user} />
           <div>
-            <Navbar user={user} />
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/login">
-                <Login authService={this.authService} setUser={this.setUser} />
-              </Route>
+              <Route
+                exact
+                path="/login"
+                render={(routeProps) => (
+                  <Login
+                    authService={this.authService}
+                    setUser={this.setUser}
+                    // eslint-disable-next-line react/jsx-props-no-spreading
+                    {...routeProps}
+                  />
+                )}
+              />
               <Route exact path="/profile" component={Profile} />
             </Switch>
           </div>

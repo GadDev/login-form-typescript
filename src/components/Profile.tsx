@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Profile extends Component {

@@ -1,9 +1,11 @@
 import React, { SyntheticEvent } from 'react';
 
+import { User } from '../model/Model';
 import AuthService from '../services/AuthService';
 
 interface LoginProps {
   authService: AuthService;
+  setUser: (user: User) => void;
 }
 
 interface LoginState {
@@ -36,12 +38,8 @@ class Login extends React.Component<LoginProps, LoginState> {
     const { userName, password } = this.state;
     const result = await authService.login(userName, password);
     if (result) {
-      // eslint-disable-next-line no-console
-      console.log(result);
       this.setState({ loginSuccess: true });
     } else {
-      // eslint-disable-next-line no-console
-      console.log('wrong login');
       this.setState({ loginSuccess: false });
     }
   }

@@ -1,8 +1,9 @@
 import { User } from 'model/Model';
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
+
 // eslint-disable-next-line react/prefer-stateless-function
-class Navbar extends Component<{ user: User }> {
+class Navbar extends Component<{ user: User | undefined }> {
   render(): JSX.Element {
     const { user } = this.props;
     let loginLink: JSX.Element;

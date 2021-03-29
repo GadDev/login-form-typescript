@@ -1,4 +1,4 @@
-import { User } from '../model/Model';
+import { User, UserAttributes } from '../model/Model';
 
 class AuthService {
   // eslint-disable-next-line class-methods-use-this
@@ -13,6 +13,20 @@ class AuthService {
       };
     }
     return undefined;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  public async getUserAttributes(user: User): Promise<UserAttributes[]> {
+    const result: UserAttributes[] = [];
+    result.push({
+      name: 'description',
+      value: 'Admin user',
+    });
+    result.push({
+      name: 'age',
+      value: '38',
+    });
+    return result;
   }
 }
 

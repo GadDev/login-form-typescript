@@ -49,7 +49,18 @@ class App extends Component<unknown, AppState> {
                   />
                 )}
               />
-              <Route exact path="/profile" component={Profile} />
+              <Route
+                exact
+                path="/profile"
+                render={(routeProps) => (
+                  <Profile
+                    authService={this.authService}
+                    user={user}
+                    // eslint-disable-next-line react/jsx-props-no-spreading
+                    {...routeProps}
+                  />
+                )}
+              />
             </Switch>
           </div>
         </Router>

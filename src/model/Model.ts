@@ -3,7 +3,7 @@ export interface User {
   email: string;
 }
 
-export interface UserAttribute {
+export interface UserAttributes {
   name: string;
   value: string;
 }

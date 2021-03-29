@@ -20,6 +20,16 @@ class Profile extends Component<ProfileProps, ProfileState> {
     };
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  async componentDidMount() {
+    const { user, authService } = this.props;
+    if (user) {
+      const userAttr = await authService.getUserAttributes(user);
+      return this.setState({ userAttributes: userAttr });
+    }
+    return false;
+  }
+
   private renderAttr() {
     const listAttr: UserAttributes[] = [];
     const { userAttributes } = this.state;
@@ -45,7 +55,13 @@ class Profile extends Component<ProfileProps, ProfileState> {
     const { user } = this.props;
     let profile: JSX.Element;
     if (user) {
-      profile = <h3>hello {user.userName}</h3>;
+      profile = (
+        <div>
+          <h3>hello {user.userName}</h3>
+          <p>Attributes</p>
+          {this.renderAttr()}
+        </div>
+      );
     } else {
       profile = (
         <div>

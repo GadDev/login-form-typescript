@@ -64,8 +64,6 @@ class App extends Component<unknown, AppState> {
             </Switch>
           </div>
         </Router>
-
-        {user?.userName ? `Hello ${user?.userName}` : null}
       </div>
     );
   }
